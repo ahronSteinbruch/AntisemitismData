@@ -1,19 +1,30 @@
 import pandas as pd
 
 class DataCleaner:
+    def __init__(self,df):
+        self.df = df
+        self.cleanNaN()
+        self.cleanDuplicate()
+        self.CleaningCommas()
+        self.CleaningShtrudel()
+    def getData(self):
+        return self.df
 
-# get data in format of dataframe and clean
-    def cleanData(self, data):
-        df = pd.DataFrame(data)
+    def cleanNaN(self):
+        self.df = self.df.dropna()
+        return self.df
 
-    def cleanNaN(self, df):
-        df = df.dropna()
-        return df
+    def cleanDuplicate(self):
+        self.df = self.df.drop_duplicates()
+        return self.df
 
-    def cleanDuplicate(self, df):
-        df = df.drop_duplicates()
-        return df
+    def CleaningCommas(self):
+        self.df = self.df.replace(',', '', regex=True)
 
-    def CleaningCommas(self, df):
-        df = df.replace(',', '', regex=True)
+    def CleaningShtrudel(self):
+        self.df = self.df.replace('@' '', regex=True)
+
+    def cleanDuplicate(self):
+        self.df = self.df.drop_duplicates(subset=['Text', 'Biased'], keep='first')
+
 
