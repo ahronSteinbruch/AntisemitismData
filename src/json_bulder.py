@@ -8,6 +8,7 @@ class JsonBulder:
     def __init__(self,df):
         self.df = df
         self.json_data = []
+        self.build_json()
 
     def add_data(self, data):
         self.json_data.append(data)
